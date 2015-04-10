@@ -28,6 +28,7 @@
 #include <QThread>
 #include <QDateTime>
 #include <QSysInfo>
+#include <QObject>
 #if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
 #include <QTextDocument>
 #else
@@ -288,12 +289,12 @@ qint64 Utility::qDateTimeToTime_t(const QDateTime& t)
 
 //TODO change to initializers list  when possible.
 static QList<QPair<QString,quint32> > timeMapping = QList<QPair<QString,quint32> >() <<
-                                                    QPair<QString,quint32>("%1 years",86400*365) <<
-                                                    QPair<QString,quint32>("%1 months",86400*30) <<
-                                                    QPair<QString,quint32>("%1 days",86400) <<
-                                                    QPair<QString,quint32>("%1h",3600) <<
-                                                    QPair<QString,quint32>("%1m",60) <<
-                                                    QPair<QString,quint32>("%1s",1);
+                                                    QPair<QString,quint32>(QObject::tr("%1 years", "%1 is a number"), 86400*365) <<
+                                                    QPair<QString,quint32>(QObject::tr("%1 months", "%1 is a number"), 86400*30) <<
+                                                    QPair<QString,quint32>(QObject::tr("%1 days", "%1 is a number"), 86400) <<
+                                                    QPair<QString,quint32>(QObject::tr("%1h", "%1 is a number"), 3600) <<
+                                                    QPair<QString,quint32>(QObject::tr("%1m", "%1 is a number"), 60) <<
+                                                    QPair<QString,quint32>(QObject::tr("%1s", "%1 is a number of seconds"), 1);
                                                     
                                                     
 QString Utility::timeToDescriptiveString(quint64 msecs, quint8 precision, QString separator, bool specific) 
